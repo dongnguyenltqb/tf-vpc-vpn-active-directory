@@ -3,6 +3,12 @@ variable "aws_region" {
   nullable = false
 }
 
+variable "ad_name" {
+  type     = string
+  nullable = false
+
+}
+
 variable "ad_password" {
   type     = string
   nullable = false

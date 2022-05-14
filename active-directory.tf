@@ -1,5 +1,5 @@
 resource "aws_directory_service_directory" "vpn" {
-  name     = "ad.kitchko.com"
+  name     = var.ad_name
   password = var.ad_password
   edition  = "Standard"
   type     = "MicrosoftAD"

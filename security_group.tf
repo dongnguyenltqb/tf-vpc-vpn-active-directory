@@ -23,15 +23,21 @@ resource "aws_security_group" "vpnclient" {
   })
 }
 
-resource "aws_security_group" "ec2-nginx" {
-  name        = "nginxsg"
-  description = "configure in/out traffic to nginx on 1c-private"
+resource "aws_security_group" "jump" {
+  name        = "jumpsg"
+  description = "allow ssh from all"
   vpc_id      = aws_vpc.tf-vpc.id
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -44,6 +50,6 @@ resource "aws_security_group" "ec2-nginx" {
   }
 
   tags = merge(local.common_tags, {
-    Name = "nginxsg"
+    Name = "jumpsg"
   })
 }

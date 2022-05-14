@@ -1,3 +1,4 @@
 aws_region  = "ap-southeast-1"
+ad_name 	= "ad.example.com
 ad_password = "a_strong_password"
 pubkey      = "a_ssh_pub_key"
