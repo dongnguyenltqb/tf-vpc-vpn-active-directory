@@ -14,3 +14,13 @@ run:
 ```
 terraform apply -var-file dev.tfvar
 ```
+
+ovpn:
+
+- to download ovpn configure file, run command
+
+```
+aws ec2 export-client-vpn-client-configuration --client-vpn-endpoint-id $ID  --output text > config.ovpn
+```
+
+- update remotehost name of config file add some random string, because endpoint prefix dns name is \*.
