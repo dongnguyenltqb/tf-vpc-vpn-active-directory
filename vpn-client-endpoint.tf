@@ -64,4 +64,9 @@ resource "aws_ec2_client_vpn_route" "internet" {
 }
 
 
+resource "aws_ec2_client_vpn_route" "local" {
+  client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.ep1.id
+  destination_cidr_block = "10.6.0.0/16"
+  target_vpc_subnet_id   = "local"
+}
 
