@@ -1,10 +1,10 @@
-resource "aws_iam_instance_profile" "ec2Domain" {
-  name = "awsEc2DomainVPNInstanceProfile"
-  role = aws_iam_role.domain.name
+resource "aws_iam_instance_profile" "profile" {
+  name = "awsDomainVPNInstanceProfile"
+  role = aws_iam_role.role.name
 }
 
-resource "aws_iam_role" "domain" {
-  name = "awsEc2DomainVPNInstanceRole"
+resource "aws_iam_role" "role" {
+  name = "awsDomainVPNInstanceRole"
   assume_role_policy = jsonencode(
     {
       "Version" : "2012-10-17",
@@ -40,16 +40,16 @@ resource "aws_iam_policy" "policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "domainRoleAttachment" {
-  role       = aws_iam_role.domain.name
+  role       = aws_iam_role.role.name
   policy_arn = aws_iam_policy.policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "domainRoleAttachmentAmazonSSMManagedInstanceCore" {
-  role       = aws_iam_role.domain.name
+  role       = aws_iam_role.role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 resource "aws_iam_role_policy_attachment" "domainRoleAttachmentAmazonSSMDirectoryServiceAccess" {
-  role       = aws_iam_role.domain.name
+  role       = aws_iam_role.role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMDirectoryServiceAccess"
 }

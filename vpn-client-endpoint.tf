@@ -8,7 +8,7 @@ resource "aws_ec2_client_vpn_endpoint" "ep1" {
   vpc_id             = aws_vpc.tf-vpc.id
   vpn_port           = 443
   security_group_ids = [aws_security_group.vpnclient.id]
-  # dns_servers            = [aws_instance.nginx.private_ip, "8.8.8.8"]
+  dns_servers            = ["10.5.0.2"]
   tags = merge(local.common_tags, {
     Name = "clientvpn-endpoint1"
   })
